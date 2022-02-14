@@ -27,7 +27,7 @@ void testgetOverallBatteryStatus(float temperature, float SoC, float chargeRate,
 }
 
 int main() {
-	fpPrint = &testShowBatteryStatus; //Assigning fake print function for testing
+        fpPrint = &testShowBatteryStatus; //Assigning fake print function for testing
 	testGetBatteryTempStatus(30, 1);
 	testGetBatteryTempStatus(55, 0);
 	testGetBatterySoCStatus(50, 1);
