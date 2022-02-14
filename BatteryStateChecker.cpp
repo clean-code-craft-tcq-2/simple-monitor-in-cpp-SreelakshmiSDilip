@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 #include <string.h>
 #include "BatteryStateChecker.h"
 
@@ -7,7 +7,7 @@ char alertString[100] = "Alert: Battery Status: Out of Range: ";
 int (*fpPrint) (const char*) = &showBatteryStatus;
 
 int showBatteryStatus(const char* statement) {
-	cout<< \n << statement);
+	cout<<" \n" << statement);
 	return 0;
 }
 
