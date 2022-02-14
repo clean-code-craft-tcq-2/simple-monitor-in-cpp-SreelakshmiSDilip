@@ -76,7 +76,7 @@ bool getBatterySoCStatus(float SoC) {
 	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
 	status = getParameterStatus(status, "State of Charge");
 	if(status){
-		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP,"State of Charge");
+		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(SoC, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP,"State of Charge");
 	}
 	return status;
 }
