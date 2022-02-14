@@ -30,7 +30,7 @@ bool IsParameterIsWithinLimit(float parameterValue, float max_limit,const char* 
 	}
 	return 1;
 }
-bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_threshold, float max_threshold, const char* parameter){
+bool IsEarlyLowAlertRequired(float parameterValue, float min_threshold, const char* parameter){
 	char statement[100];
 	bool earlyAlertLimitReached = false;
 	if((parameterValue -4) < min_threshold)
@@ -39,7 +39,16 @@ bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_thresho
 	    strcat(statement, parameter);
 	    earlyAlertLimitReached = true;
 	}
-	else if((parameterValue + 4) > max_threshold){
+        if (earlyAlertLimitReached == 0) {
+		(*fpPrint)(statement);
+	}
+	return earlyAlertLimitReached;
+}
+
+bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const char* parameter){
+	char statement[100];
+	bool earlyAlertLimitReached = false;
+        if((parameterValue + 4) > max_threshold){
 	    strcpy(statement, highWarningString);
 	    strcat(statement, parameter);
 	    earlyAlertLimitReached = true;
@@ -65,7 +74,8 @@ bool getBatteryTempStatus(float temperature) {
 	status = IsParameterInRange(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
-		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP,"Temperature");
+		bool l_earlyLowAlert = IsEarlyLowAlertRequired(temperature, MIN_THRESHOLD_TEMP,"Temperature");
+		bool l_earlyHighAlert = IsEarlyHighAlertRequired(temperature, MIN_THRESHOLD_TEMP,"Temperature");
 	}
 	return status;
 }
@@ -74,7 +84,8 @@ bool getBatterySoCStatus(float SoC) {
 	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
 	status = getParameterStatus(status, "State of Charge");
 	if(status){
-		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(SoC, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP,"State of Charge");
+		bool l_earlyLowAlert = IsEarlyLowAlertRequired(SoC, MIN_THRESHOLD__SoC,"State of Charge");
+		bool l_earlyHighAlert = IsEarlyHighAlertRequired(SoC, MAX_THRESHOLD_SoC,"State of Charge");
 	}
 	return status;
 }
