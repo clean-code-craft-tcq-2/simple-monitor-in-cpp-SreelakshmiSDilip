@@ -5,7 +5,6 @@ using namespace std;
 char alertString[100] = " Battery Status Out of Range Alert!! For: ";
 char lowWarningString[100] = "Battery Status low Warning!!For : ";
 char highWarningString[100] = "Battery Status high Warning!!For :";
-
 int (*fpPrint) (const char*) = &showBatteryStatus;
 
 int showBatteryStatus(const char* statement) {
@@ -70,7 +69,6 @@ bool getBatteryTempStatus(float temperature) {
 	}
 	return status;
 }
-
 bool getBatterySoCStatus(float SoC) {
 	bool status;
 	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
@@ -80,7 +78,6 @@ bool getBatterySoCStatus(float SoC) {
 	}
 	return status;
 }
-
 bool getBatteryChargingRateStatus(float chargingRate){
 	bool status;
 	status = IsParameterIsWithinLimit(chargingRate, MAX_THRESHOLD_CHARGE_RATE, "Charge Rate");
