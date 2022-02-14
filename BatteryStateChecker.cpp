@@ -4,7 +4,7 @@
 using namespace std;
 char alertString[100] = " Battery Status Out of Range Alert!! For: ";
 char lowWarningString[100] = "Battery Status low Warning!!For : ";
-char highWarningString[100] = "Battery Status high Warning!!For : 
+char highWarningString[100] = "Battery Status high Warning!!For :";
 
 int (*fpPrint) (const char*) = &showBatteryStatus;
 
