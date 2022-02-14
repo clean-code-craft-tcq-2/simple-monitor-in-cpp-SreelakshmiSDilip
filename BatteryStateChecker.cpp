@@ -47,6 +47,7 @@ bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_thresho
 	}
         if (earlyAlertLimitReached == 0) {
 		(*fpPrint)(statement);
+	}
 	return earlyAlertLimitReached;
 }
 
