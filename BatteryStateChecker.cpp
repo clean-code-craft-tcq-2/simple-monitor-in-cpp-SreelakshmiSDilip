@@ -27,7 +27,7 @@ bool IsParameterIsWithinLimit(float parameterValue, float max_limit) {
 	else if(parameterValue  > max_limit - 4){
 	    char statement[100];
 	    strcpy(statement, highWarningString);
-	    strcat(statement, parameter);
+	    strcat(statement, parameterValue);
 	}
 	return 1;
 }
