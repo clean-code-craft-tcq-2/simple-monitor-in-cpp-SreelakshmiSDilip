@@ -20,7 +20,6 @@ void testGetOverallBatteryStatus(float temperature, float SoC, float chargeRate,
 }
 
 int main() {
-        fpPrint = &testShowBatteryStatus; 
 	testGetBatteryTempStatus(30, 1);
 	testGetBatteryTempStatus(55, 0);
 	testGetBatterySoCStatus(50, 1);
