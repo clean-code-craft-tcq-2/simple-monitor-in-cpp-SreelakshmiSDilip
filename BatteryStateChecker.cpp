@@ -2,7 +2,7 @@
 #include <string.h>
 #include "BatteryStateChecker.h"
 using namespace std;
-char alertString[100] = " Battery Status Out of Range Alert For: ";
+char alertString[100] = " Battery Status Out of Range Alert!! For: ";
 
 int (*fpPrint) (const char*) = &showBatteryStatus;
 
