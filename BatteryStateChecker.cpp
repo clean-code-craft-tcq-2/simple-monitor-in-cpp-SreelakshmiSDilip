@@ -3,6 +3,8 @@
 #include "BatteryStateChecker.h"
 using namespace std;
 char alertString[100] = " Battery Status Out of Range Alert!! For: ";
+char lowWarningString[100] = "Battery Status low Warning!!For : ";
+char highWarningString[100] = "Battery Status high Warning!!For : 
 
 int (*fpPrint) (const char*) = &showBatteryStatus;
 
@@ -23,6 +25,24 @@ bool IsParameterIsWithinLimit(float parameterValue, float max_limit) {
 		return 0;
 	}
 	return 1;
+}
+bool IsWarningPrintRequired(float parameterValue, float min_threshold, float max_threshold){
+	char statement[100];
+	bool warningLimitReached = false;
+	if((parameterValue -4) < min_threshold)
+	{
+	    strcpy(statement, lowWarningString);
+	    strcat(statement, parameter);
+	    warningLimitReached = true;
+	}
+	else if((parameterValue + 4) > max_threshold){
+	    strcpy(statement, highWarningString);
+	    strcat(statement, parameter);
+	    warningLimitReached = true;
+	}
+        if (warningLimitReached == 0) {
+		(*fpPrint)(statement);
+	return warningLimitReached;
 }
 
 bool getParameterStatus(bool status, const char* parameter) {
