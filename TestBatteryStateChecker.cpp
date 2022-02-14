@@ -21,14 +21,14 @@ void testGetOverallBatteryStatus(float temperature, float SoC, float chargeRate,
 
 int main() {
 	testGetBatteryTempStatus(30, 1);
-	testGetBatteryTempStatus(55, 0);
-	testGetBatterySoCStatus(50, 1);
+	testGetBatteryTempStatus(50, 0);
+	testGetBatterySoCStatus(70, 1);
 	testGetBatterySoCStatus(85, 0);
 	testGetBatteryChargingRateStatus(0.6, 1);
 	testGetBatteryChargingRateStatus(0.9, 0);
 	testGetOverallBatteryStatus(20, 45, 0.6, 1);
-	testGetOverallBatteryStatus(55, 100, 0.9, 0);
-	testGetOverallBatteryStatus(43, 90, 0.6, 0);
-	testGetOverallBatteryStatus(43, 70, 0.9, 0);
+	testGetOverallBatteryStatus(50, 90, 0.9, 0);
+	testGetOverallBatteryStatus(40, 97, 0.6, 0);
+	testGetOverallBatteryStatus(40, 77, 0.9, 0);
 
 }
