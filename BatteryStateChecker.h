@@ -10,4 +10,3 @@
  bool getBatteryChargingRateStatus(float chargeRate);
  bool getOverallBatteryStatus(float temperature, float SoC, float chargeRate);
  int showBatteryStatus(const char* statement);
- int (*fpPrint) (const char*);
