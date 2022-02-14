@@ -1,22 +1,63 @@
-#include <assert.h>
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+#include <string.h>
+#include "BatteryStateChecker.h"
 
-bool batteryIsOk(float temperature, float soc, float chargeRate) {
-  if(temperature < 0 || temperature > 45) {
-    cout << "Temperature out of range!\n";
-    return false;
-  } else if(soc < 20 || soc > 80) {
-    cout << "State of Charge out of range!\n";
-    return false;
-  } else if(chargeRate > 0.8) {
-    cout << "Charge Rate out of range!\n";
-    return false;
-  }
-  return true;
+char alertString[100] = "Alert: Battery Status: Out of Range: ";
+
+int (*fpPrint) (const char*) = &showBatteryStatus;
+
+int showBatteryStatus(const char* statement) {
+	printf("%s \n", statement);
+	return 0;
 }
 
-int main() {
-  assert(batteryIsOk(25, 70, 0.7) == true);
-  assert(batteryIsOk(50, 85, 0) == false);
+bool IsParameterInRange(float parameterValue, float min_threshold, float max_threshold) {
+	if (parameterValue < min_threshold || parameterValue > max_threshold) {
+		return 0;
+	}
+	return 1;
+}
+
+bool IsParameterIsWithinLimit(float parameterValue, float max_limit) {
+	if (parameterValue  > max_limit) {
+		return 0;
+	}
+	return 1;
+}
+
+bool getParameterStatus(bool status, const char* parameter) {
+	char statement[100];
+	strcpy(statement, alertString);
+	strcat(statement, parameter);
+	if (status == 0) {
+		(*fpPrint)(statement);
+	}
+	return status;
+}
+
+bool getBatteryTempStatus(float temperature) {
+	bool status;
+	status = IsParameterInRange(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
+	status = getParameterStatus(status, "Temperature");
+	return status;
+}
+
+bool getBatterySoCStatus(float SoC) {
+	bool status;
+	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
+	status = getParameterStatus(status, "State of Charge");
+	return status;
+}
+
+bool getBatteryChargingRateStatus(float chargingRate){
+	bool status;
+	status = IsParameterIsWithinLimit(chargingRate, MAX_THRESHOLD_CHARGE_RATE);
+	status = getParameterStatus(status, "Charge Rate");
+	return status;
+}
+
+bool getOverallBatteryStatus(float temperature, float SoC, float chargingRate){
+	bool batt_status;
+	batt_status =(getBatteryTempStatus(temperature)) && (getBatterySoCStatus(SoC)) && (getBatteryChargingRateStatus(chargingRate));
+	return batt_status;	
 }
