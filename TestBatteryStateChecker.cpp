@@ -22,7 +22,7 @@ void testGetBatteryChargingRateStatus(float chargeRate, int expectedStatus){
 	assert(getBatteryChargingRateStatus(chargeRate) == expectedStatus);
 }
  
-void testgetOverallBatteryStatus(float temperature, float SoC, float chargeRate, int expectedStatus){
+void testGetOverallBatteryStatus(float temperature, float SoC, float chargeRate, int expectedStatus){
 	assert(getOverallBatteryStatus(temperature, SoC, chargeRate) == expectedStatus);
 }
 
