@@ -20,18 +20,18 @@ bool IsParameterInRange(float parameterValue, float min_threshold, float max_thr
 	return 1;
 }
 
-bool IsParameterIsWithinLimit(float parameterValue, float max_limit) {
+bool IsParameterIsWithinLimit(float parameterValue, float max_limit,const char* parameter) {
 	if (parameterValue  > max_limit) {
 		return 0;
 	}
 	else if(parameterValue  > max_limit - 4){
 	    char statement[100];
 	    strcpy(statement, highWarningString);
-	    strcat(statement, "Charging Rate");
+	    strcat(statement, parameter);
 	}
 	return 1;
 }
-bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_threshold, float max_threshold){
+bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_threshold, float max_threshold, const char* parameter){
 	char statement[100];
 	bool earlyAlertLimitReached = false;
 	if((parameterValue -4) < min_threshold)
@@ -45,7 +45,7 @@ bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_thresho
 	    strcat(statement, parameter);
 	    earlyAlertLimitReached = true;
 	}
-        if (warningLimitReached == 0) {
+        if (earlyAlertLimitReached == 0) {
 		(*fpPrint)(statement);
 	return earlyAlertLimitReached;
 }
@@ -65,7 +65,7 @@ bool getBatteryTempStatus(float temperature) {
 	status = IsParameterInRange(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
-		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
+		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP,"Temperature");
 	}
 	return status;
 }
@@ -75,14 +75,14 @@ bool getBatterySoCStatus(float SoC) {
 	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
 	status = getParameterStatus(status, "State of Charge");
 	if(status){
-		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
+		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP,"State of Charge");
 	}
 	return status;
 }
 
 bool getBatteryChargingRateStatus(float chargingRate){
 	bool status;
-	status = IsParameterIsWithinLimit(chargingRate, MAX_THRESHOLD_CHARGE_RATE);
+	status = IsParameterIsWithinLimit(chargingRate, MAX_THRESHOLD_CHARGE_RATE, "Charge Rate");
 	status = getParameterStatus(status, "Charge Rate");
 	return status;
 }
