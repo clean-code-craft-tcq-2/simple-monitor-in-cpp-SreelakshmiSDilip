@@ -4,7 +4,7 @@
 
 char alertString[100] = "Alert: Battery Status: Out of Range: ";
 
-  fpPrint = &showBatteryStatus;
+  *fpPrint = &showBatteryStatus;
 
 int showBatteryStatus(const char* statement) {
 	printf("%s \n", statement);
