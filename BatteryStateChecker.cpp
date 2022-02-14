@@ -24,25 +24,30 @@ bool IsParameterIsWithinLimit(float parameterValue, float max_limit) {
 	if (parameterValue  > max_limit) {
 		return 0;
 	}
+	else if(parameterValue  > max_limit - 4){
+	    char statement[100];
+	    strcpy(statement, highWarningString);
+	    strcat(statement, parameter);
+	}
 	return 1;
 }
-bool IsWarningPrintRequired(float parameterValue, float min_threshold, float max_threshold){
+bool IsEarlyAlertRequiredforCurrentValue(float parameterValue, float min_threshold, float max_threshold){
 	char statement[100];
-	bool warningLimitReached = false;
+	bool earlyAlertLimitReached = false;
 	if((parameterValue -4) < min_threshold)
 	{
 	    strcpy(statement, lowWarningString);
 	    strcat(statement, parameter);
-	    warningLimitReached = true;
+	    earlyAlertLimitReached = true;
 	}
 	else if((parameterValue + 4) > max_threshold){
 	    strcpy(statement, highWarningString);
 	    strcat(statement, parameter);
-	    warningLimitReached = true;
+	    earlyAlertLimitReached = true;
 	}
         if (warningLimitReached == 0) {
 		(*fpPrint)(statement);
-	return warningLimitReached;
+	return earlyAlertLimitReached;
 }
 
 bool getParameterStatus(bool status, const char* parameter) {
@@ -59,6 +64,9 @@ bool getBatteryTempStatus(float temperature) {
 	bool status;
 	status = IsParameterInRange(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
+	if(status){
+		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
+	}
 	return status;
 }
 
@@ -66,6 +74,9 @@ bool getBatterySoCStatus(float SoC) {
 	bool status;
 	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
 	status = getParameterStatus(status, "State of Charge");
+	if(status){
+		bool l_earlyAlert = IsEarlyAlertRequiredforCurrentValue(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
+	}
 	return status;
 }
 
