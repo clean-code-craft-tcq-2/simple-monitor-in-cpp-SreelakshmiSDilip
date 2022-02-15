@@ -10,9 +10,14 @@ typedef enum{
    e_CHARGERATE
 }ParameterTypeEnum;
 
-float convertTempToCelcius(float temperature, string unit)
- bool getBatteryTempStatus(float temperature,string unit);
+struct TemperatureStruct
+   float tempValue;
+   string tempUnit;
+};
+
+float convertTempToCelcius(TemperatureStruct temperature)
+ bool getBatteryTempStatus(TemperatureStruct temperature);
  bool getBatterySoCStatus(float SoC);
  bool getBatteryChargingRateStatus(float chargeRate);
- bool getOverallBatteryStatus(float temperature, float SoC, float chargeRate);
+ bool getOverallBatteryStatus(Temperature temperature, float SoC, float chargeRate);
  int showBatteryStatus(const char* statement);
