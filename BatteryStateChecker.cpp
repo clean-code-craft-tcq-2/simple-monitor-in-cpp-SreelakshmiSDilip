@@ -60,11 +60,12 @@ bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const c
 }
 float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterValue , string unit)
 {
+	float l_parameterConverted;
   switch(parameter)
   {
   case e_TEMPERATURE:
 	{
-       convertTempToCelcius(parameterValue,unit);
+       l_parameterConverted = convertTempToCelcius(parameterValue,unit);
 	   break;
 	}
   case e_SoC:
@@ -79,7 +80,7 @@ float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterVal
   default:
 	   break;
 }
-  
+  return l_parameterConverted;
   
 }
 float convertTempToCelcius(float temperature, string unit)
