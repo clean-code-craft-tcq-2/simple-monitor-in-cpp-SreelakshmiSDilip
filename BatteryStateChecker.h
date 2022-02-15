@@ -17,7 +17,7 @@ struct TemperatureStruct{
    string tempUnit;
 };
 
-float convertTempToCelcius(TemperatureStruct temperature);
+float convertTempToCelcius(float temperature , string unit);
  bool getBatteryTempStatus(TemperatureStruct temperature);
  bool getBatterySoCStatus(float SoC);
  bool getBatteryChargingRateStatus(float chargeRate);
