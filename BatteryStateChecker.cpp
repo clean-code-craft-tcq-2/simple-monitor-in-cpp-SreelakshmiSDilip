@@ -75,9 +75,9 @@ float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterVal
   
   
 }
-float convertTempToCelcius(float temperature, string unit)
+float convertTempToCelcius(TemperatureStruct temperature)
 {
-    if(unit == "F")
+    if(temperature.Tempunit == "F")
         return ((temperature - 32.0)/1.8);
     else 
         return temperature;
