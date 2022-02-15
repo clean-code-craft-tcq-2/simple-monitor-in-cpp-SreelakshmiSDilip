@@ -30,7 +30,7 @@ int main() {
 	testGetBatteryChargingRateStatus(0.9, 0);
 	testGetOverallBatteryStatus(testTemp_C,45, 0.6, 1);
 	testGetOverallBatteryStatus(testTemp_F, 90, 0.9, 0);
-	testGetOverallBatteryStatus({testTemp_C, 97, 0.6, 0);
+	testGetOverallBatteryStatus(testTemp_C, 97, 0.6, 0);
 	testGetOverallBatteryStatus(testTemp_C, 77, 0.9, 0);
 
 }
