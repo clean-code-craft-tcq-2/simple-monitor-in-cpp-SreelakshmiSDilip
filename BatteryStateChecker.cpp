@@ -107,8 +107,8 @@ bool getBatteryTempStatus(TemperatureStruct temperature) {
 	status = IsParameterInRange(temperature.tempValue, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
-		bool l_earlyLowAlert = IsEarlyLowAlertRequired(temperature, MIN_THRESHOLD_TEMP,"Temperature");
-		bool l_earlyHighAlert = IsEarlyHighAlertRequired(temperature, MIN_THRESHOLD_TEMP,"Temperature");
+		bool l_earlyLowAlert = IsEarlyLowAlertRequired(temperature.tempValue, MIN_THRESHOLD_TEMP,"Temperature");
+		bool l_earlyHighAlert = IsEarlyHighAlertRequired(temperature.tempValue, MIN_THRESHOLD_TEMP,"Temperature");
 	}
 	return status;
 }
