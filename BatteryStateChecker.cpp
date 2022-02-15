@@ -75,10 +75,10 @@ float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterVal
   
   
 }
-float convertTempToCelcius(TemperatureStruct temperature)
+float convertTempToCelcius(float temperature, string unit)
 {
-    if(temperature.tempUnit == "F")
-        return ((temperature.tempValue - 32.0)/1.8);
+    if(unit == "F")
+        return ((temperature - 32.0)/1.8);
     else 
         return temperature;
 }
@@ -95,7 +95,7 @@ bool getParameterStatus(bool status, const char* parameter) {
 
 bool getBatteryTempStatus(TemperatureStruct temperature) {
 	bool status;
-	temperature = convertParamtoStandardUnit(temperature.tempValue);
+	temperature = convertParamtoStandardUnit(e_TEMPERATURE,temperature.tempValue,temperature.tempUnit);
 	status = IsParameterInRange(temperature.tempValue, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
