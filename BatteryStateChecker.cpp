@@ -39,7 +39,7 @@ bool IsEarlyLowAlertRequired(float parameterValue, float min_threshold, const ch
 	    strcat(statement, parameter);
 	    earlyAlertLimitReached = true;
 	}
-        if (earlyAlertLimitReached == 0) {
+        if (earlyAlertLimitReached) {
 		(*fpPrint)(statement);
 	}
 	return earlyAlertLimitReached;
@@ -53,7 +53,7 @@ bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const c
 	    strcat(statement, parameter);
 	    earlyAlertLimitReached = true;
 	}
-        if (earlyAlertLimitReached == 0) {
+        if (earlyAlertLimitReached) {
 		(*fpPrint)(statement);
 	}
 	return earlyAlertLimitReached;
