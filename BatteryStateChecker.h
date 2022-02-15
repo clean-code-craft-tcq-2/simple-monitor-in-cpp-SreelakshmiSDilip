@@ -1,3 +1,4 @@
+#include<string.h>
 #define MIN_THRESHOLD_TEMP 0
 #define MAX_THRESHOLD_TEMP 45
 #define MIN_THRESHOLD__SoC 20
@@ -15,7 +16,7 @@ struct TemperatureStruct{
    string tempUnit;
 };
 
-float convertTempToCelcius(TemperatureStruct temperature)
+float convertTempToCelcius(TemperatureStruct temperature);
  bool getBatteryTempStatus(TemperatureStruct temperature);
  bool getBatterySoCStatus(float SoC);
  bool getBatteryChargingRateStatus(float chargeRate);
