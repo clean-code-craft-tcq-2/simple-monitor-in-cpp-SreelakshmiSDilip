@@ -19,5 +19,5 @@ float convertTempToCelcius(TemperatureStruct temperature)
  bool getBatteryTempStatus(TemperatureStruct temperature);
  bool getBatterySoCStatus(float SoC);
  bool getBatteryChargingRateStatus(float chargeRate);
- bool getOverallBatteryStatus(Temperature temperature, float SoC, float chargeRate);
+ bool getOverallBatteryStatus(TemperatureStruct  temperature, float SoC, float chargeRate);
  int showBatteryStatus(const char* statement);
