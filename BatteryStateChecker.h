@@ -10,7 +10,7 @@ typedef enum{
    e_CHARGERATE
 }ParameterTypeEnum;
 
-struct TemperatureStruct
+struct TemperatureStruct{
    float tempValue;
    string tempUnit;
 };
