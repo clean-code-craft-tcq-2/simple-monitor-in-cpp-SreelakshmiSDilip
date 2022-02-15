@@ -6,12 +6,8 @@
 #define MAX_THRESHOLD_SoC 80
 #define MAX_THRESHOLD_CHARGE_RATE 0.8
 using namespace std;
-typedef enum{
-   e_TEMPERATURE,
-   e_SoC,
-   e_CHARGERATE
-}ParameterTypeEnum;
 
+const int c_WarningLimitFactor = 4;
 struct TemperatureStruct{
    float tempValue;
    string tempUnit;
