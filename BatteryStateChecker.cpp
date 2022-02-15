@@ -30,7 +30,7 @@ bool IsParameterWithinLimit(float parameterValue, float max_limit,const char* pa
 	}
 	return 1;
 }
-bool IsEarlyLowAlertRequired(float parameterValue, float min_threshold, const char* parameter){
+bool checkForEarlyLowWarning(float parameterValue, float min_threshold, const char* parameter){
 	char statement[100];
 	bool earlyAlertLimitReached = false;
 	if((parameterValue -4) < min_threshold)
@@ -45,7 +45,7 @@ bool IsEarlyLowAlertRequired(float parameterValue, float min_threshold, const ch
 	return earlyAlertLimitReached;
 }
 
-bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const char* parameter){
+void checkForEarlyHighWarning(float parameterValue, float max_threshold, const char* parameter){
 	char statement[100];
 	bool earlyAlertLimitReached = false;
         if((parameterValue + 4) > max_threshold){
@@ -56,7 +56,7 @@ bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const c
         if (earlyAlertLimitReached) {
 		(*fpPrint)(statement);
 	}
-	return earlyAlertLimitReached;
+	//return earlyAlertLimitReached;
 }
 float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterValue , string unit)
 {
@@ -117,8 +117,11 @@ bool getBatterySoCStatus(float SoC) {
 	status = IsParameterInRange(SoC, MIN_THRESHOLD__SoC, MAX_THRESHOLD_SoC);
 	status = getParameterStatus(status, "State of Charge");
 	if(status){
-		bool l_earlyLowAlert = IsEarlyLowAlertRequired(SoC, MIN_THRESHOLD__SoC,"State of Charge");
-		bool l_earlyHighAlert = IsEarlyHighAlertRequired(SoC, MAX_THRESHOLD_SoC,"State of Charge");
+		bool lowWarningActive = checkForEarlyLowWarning(SoC, MIN_THRESHOLD__SoC,"State of Charge");
+		if(!lowWarningActive)
+		{
+	            checkForEarlyHighWarning(SoC, MAX_THRESHOLD_SoC,"State of Charge");
+		}
 	}
 	return status;
 }
