@@ -4,8 +4,14 @@
 #define MAX_THRESHOLD_SoC 80
 #define MAX_THRESHOLD_CHARGE_RATE 0.8
 
+typedef enum{
+   e_TEMPERATURE,
+   e_SoC,
+   e_CHARGERATE
+}ParameterTypeEnum;
 
- bool getBatteryTempStatus(float temperature);
+float convertTempToCelcius(float temperature, string unit)
+ bool getBatteryTempStatus(float temperature,string unit);
  bool getBatterySoCStatus(float SoC);
  bool getBatteryChargingRateStatus(float chargeRate);
  bool getOverallBatteryStatus(float temperature, float SoC, float chargeRate);
