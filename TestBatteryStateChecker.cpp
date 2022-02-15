@@ -3,7 +3,7 @@
 #include "BatteryStateChecker.h"
 
 
-void testGetBatteryTempStatus(float temperature, int expectedStatus) {
+void testGetBatteryTempStatus(TemperatureStruct temperature, int expectedStatus) {
 	assert(getBatteryTempStatus(temperature) == expectedStatus);
 }
  
