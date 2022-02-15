@@ -23,7 +23,7 @@ bool IsParameterWithinLimit(float parameterValue, float max_limit,const char* pa
 	if (parameterValue  > max_limit) {
 		return 0;
 	}
-	else if(parameterValue  > max_limit - 4){
+	else if(parameterValue  > max_limit - c_WarningLimitFactor ){
 	    char statement[100];
 	    strcpy(statement, highWarningString);
 	    strcat(statement, parameter);
@@ -33,7 +33,7 @@ bool IsParameterWithinLimit(float parameterValue, float max_limit,const char* pa
 bool checkForEarlyLowWarning(float parameterValue, float min_threshold, const char* parameter){
 	char statement[100];
 	bool earlyAlertLimitReached = false;
-	if((parameterValue -4) < min_threshold)
+	if((parameterValue -c_WarningLimitFactor ) < min_threshold)
 	{
 	    strcpy(statement, lowWarningString);
 	    strcat(statement, parameter);
