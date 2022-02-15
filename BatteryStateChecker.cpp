@@ -61,14 +61,21 @@ bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const c
 float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterValue , string unit)
 {
   switch(parameter)
+  {
   case e_TEMPERATURE:
+	{
        convertTempToCelcius(parameterValue,unit);
 	   break;
+	}
   case e_SoC:
+	{
   //define fn here
         break;
+	}
   case e_CHARGERATE:
+	{
        break;
+	}
   default:
 	   break;
 }
