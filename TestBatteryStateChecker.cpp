@@ -20,15 +20,15 @@ void testGetOverallBatteryStatus(TemperatureStruct   temperature, float SoC, flo
 }
 
 int main() {
-	testGetBatteryTempStatus((30,'C'), 1 );
-	testGetBatteryTempStatus((122,'F'), 0  );
+	testGetBatteryTempStatus({30,'C'}, 1 );
+	testGetBatteryTempStatus({122,'F'}, 0  );
 	testGetBatterySoCStatus(24, 1);
 	testGetBatterySoCStatus(85, 0);
 	testGetBatteryChargingRateStatus(0.6, 1);
 	testGetBatteryChargingRateStatus(0.9, 0);
-	testGetOverallBatteryStatus((20, 'C'),45, 0.6, 1);
-	testGetOverallBatteryStatus((122,'F'), 90, 0.9, 0);
-	testGetOverallBatteryStatus((40,'C'), 97, 0.6, 0);
-	testGetOverallBatteryStatus((40,'C'), 77, 0.9, 0);
+	testGetOverallBatteryStatus({20, 'C'},45, 0.6, 1);
+	testGetOverallBatteryStatus({122,'F'}, 90, 0.9, 0);
+	testGetOverallBatteryStatus({40,'C'}, 97, 0.6, 0);
+	testGetOverallBatteryStatus({40,'C'}, 77, 0.9, 0);
 
 }
