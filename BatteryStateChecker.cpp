@@ -58,6 +58,23 @@ bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const c
 	}
 	return earlyAlertLimitReached;
 }
+float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterValue , string unit)
+{
+  switch(parameter)
+  case e_TEMPERATURE:
+       convertTempToCelcius(parameterValue,unit);
+	   break;
+  case e_SoC:
+  //define fn here
+        break;
+  case e_CHARGERATE:
+       break;
+  default:
+	   break;
+}
+  
+  
+}
 float convertTempToCelcius(float temperature, string unit)
 {
     if(unit == "F")
@@ -76,8 +93,9 @@ bool getParameterStatus(bool status, const char* parameter) {
 	return status;
 }
 
-bool getBatteryTempStatus(float temperature) {
+bool getBatteryTempStatus(float temperature,string unit) {
 	bool status;
+	temperature = convertParamtoStandardUnit(temperature,unit)
 	status = IsParameterInRange(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
