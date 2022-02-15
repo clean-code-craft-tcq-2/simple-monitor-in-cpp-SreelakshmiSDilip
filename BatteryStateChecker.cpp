@@ -19,7 +19,7 @@ bool IsParameterInRange(float parameterValue, float min_threshold, float max_thr
 	return 1;
 }
 
-bool IsParameterIsWithinLimit(float parameterValue, float max_limit,const char* parameter) {
+bool IsParameterWithinLimit(float parameterValue, float max_limit,const char* parameter) {
 	if (parameterValue  > max_limit) {
 		return 0;
 	}
@@ -98,7 +98,7 @@ bool getBatterySoCStatus(float SoC) {
 }
 bool getBatteryChargingRateStatus(float chargingRate){
 	bool status;
-	status = IsParameterIsWithinLimit(chargingRate, MAX_THRESHOLD_CHARGE_RATE, "Charge Rate");
+	status = IsParameterWithinLimit(chargingRate, MAX_THRESHOLD_CHARGE_RATE, "Charge Rate");
 	status = getParameterStatus(status, "Charge Rate");
 	return status;
 }
