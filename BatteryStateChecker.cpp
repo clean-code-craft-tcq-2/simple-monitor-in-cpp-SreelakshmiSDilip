@@ -77,8 +77,8 @@ float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterVal
 }
 float convertTempToCelcius(TemperatureStruct temperature)
 {
-    if(temperature.Tempunit == "F")
-        return ((temperature - 32.0)/1.8);
+    if(temperature.tempUnit == "F")
+        return ((temperature.tempValue - 32.0)/1.8);
     else 
         return temperature;
 }
@@ -93,10 +93,10 @@ bool getParameterStatus(bool status, const char* parameter) {
 	return status;
 }
 
-bool getBatteryTempStatus(float temperature,string unit) {
+bool getBatteryTempStatus(TemperatureStruct temperature) {
 	bool status;
-	temperature = convertParamtoStandardUnit(temperature,unit)
-	status = IsParameterInRange(temperature, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
+	temperature = convertParamtoStandardUnit(temperature)
+	status = IsParameterInRange(temperature.tempValue, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
 		bool l_earlyLowAlert = IsEarlyLowAlertRequired(temperature, MIN_THRESHOLD_TEMP,"Temperature");
@@ -121,7 +121,7 @@ bool getBatteryChargingRateStatus(float chargingRate){
 	return status;
 }
 
-bool getOverallBatteryStatus(float temperature, float SoC, float chargingRate){
+bool getOverallBatteryStatus(TemperatureStruct temperature, float SoC, float chargingRate){
 	bool batt_status;
 	batt_status =(getBatteryTempStatus(temperature)) && (getBatterySoCStatus(SoC)) && (getBatteryChargingRateStatus(chargingRate));
 	return batt_status;	
