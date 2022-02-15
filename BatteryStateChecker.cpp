@@ -103,7 +103,7 @@ bool getParameterStatus(bool status, const char* parameter) {
 
 bool getBatteryTempStatus(TemperatureStruct temperature) {
 	bool status;
-	temperature = convertParamtoStandardUnit(e_TEMPERATURE,temperature.tempValue,temperature.tempUnit);
+	temperature.tempValue = convertParamtoStandardUnit(e_TEMPERATURE,temperature.tempValue,temperature.tempUnit);
 	status = IsParameterInRange(temperature.tempValue, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
