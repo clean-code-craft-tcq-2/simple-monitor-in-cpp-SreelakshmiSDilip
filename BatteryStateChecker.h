@@ -1,4 +1,5 @@
-#include<string.h>
+#include<string>
+
 #define MIN_THRESHOLD_TEMP 0
 #define MAX_THRESHOLD_TEMP 45
 #define MIN_THRESHOLD__SoC 20
