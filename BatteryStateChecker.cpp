@@ -61,24 +61,24 @@ void checkForEarlyHighWarning(float parameterValue, float max_threshold, const c
 float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterValue , string unit)
 {
 	float l_parameterConverted;
-  switch(parameter)
+ // switch(parameter)
   {
-  case e_TEMPERATURE:
+ // case e_TEMPERATURE:
 	{
        l_parameterConverted = convertTempToCelcius(parameterValue,unit);
-	   break;
+	//   break;
 	}
-  case e_SoC:
+  //case e_SoC:
 	{
   //define fn here
-        break;
+      //  break;
 	}
-  case e_CHARGERATE:
+  //case e_CHARGERATE:
 	{
-       break;
+     //  break;
 	}
-  default:
-	   break;
+  //default:
+	//   break;
 }
   return l_parameterConverted;
   
