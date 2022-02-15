@@ -58,6 +58,13 @@ bool IsEarlyHighAlertRequired(float parameterValue, float max_threshold, const c
 	}
 	return earlyAlertLimitReached;
 }
+float convertTempToCelcius(float temperature, string unit)
+{
+    if(unit == "F")
+        return ((temperature - 32.0)/1.8);
+    else 
+        return temperature;
+}
 
 bool getParameterStatus(bool status, const char* parameter) {
 	char statement[100];
