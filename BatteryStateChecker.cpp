@@ -58,31 +58,7 @@ void checkForEarlyHighWarning(float parameterValue, float max_threshold, const c
 	}
 	//return earlyAlertLimitReached;
 }
-float convertParamtoStandardUnit(ParameterTypeEnum parameter ,float parameterValue , string unit)
-{
-	float l_parameterConverted;
- // switch(parameter)
-  {
- // case e_TEMPERATURE:
-	{
-       l_parameterConverted = convertTempToCelcius(parameterValue,unit);
-	//   break;
-	}
-  //case e_SoC:
-	{
-  //define fn here
-      //  break;
-	}
-  //case e_CHARGERATE:
-	{
-     //  break;
-	}
-  //default:
-	//   break;
-}
-  return l_parameterConverted;
-  
-}
+
 float convertTempToCelcius(float temperature, string unit)
 {
     if(unit == "F")
@@ -103,7 +79,7 @@ bool getParameterStatus(bool status, const char* parameter) {
 
 bool getBatteryTempStatus(TemperatureStruct temperature) {
 	bool status;
-	temperature.tempValue = convertParamtoStandardUnit(e_TEMPERATURE,temperature.tempValue,temperature.tempUnit);
+	temperature.tempValue = convertTempToCelcius(temperature.tempValue,temperature.tempUnit);
 	status = IsParameterInRange(temperature.tempValue, MIN_THRESHOLD_TEMP, MAX_THRESHOLD_TEMP);
 	status = getParameterStatus(status, "Temperature");
 	if(status){
